@@ -4,7 +4,7 @@
   "description": "messing around",
   "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon npm src/server",
+    "dev": "export BE_ENVIRONMENT=test && nodemon npm src/server",
     "start": "npm src/server",
     "test": "tests.js"
   },
@@ -21,6 +21,10 @@
   "dependencies": {
     "@hapi/hapi": "^18.3.1",
     "boom": "^7.3.0",
-    "nodemon": "^1.19.1"
+    "hapi-cors": "^1.0.3",
+    "joi": "^14.3.1",
+    "mailgun-js": "^0.22.0",
+    "nodemon": "^1.19.1",
+    "pg": "^7.12.0"
   }
 }

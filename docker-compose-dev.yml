@@ -1,16 +1,43 @@
 version: '3'
 services:
-  website:
-    container_name: website
+  front:
+    container_name: ws
     build: 
+      context: app
+      dockerfile: Dockerfile
+    command: npm start
+    depends_on:
+      - back
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./app/:/app
+  db:
+    container_name: ws-db
+    build: 
+      context: db
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+  back:
+    container_name: ws-back
+    build:
       context: backend
       dockerfile: Dockerfile
     command: npm run dev
+    depends_on:
+      - db
     ports:
       - "8080:8080"
+    environment:
+      - DB_LIVE_HOST=ws-db
+      - DB_LIVE_USER=peter
+      - DB_LIVE_PASS=pwd
+      - DB_LIVE_NAME=live
+      - DB_TEST_HOST=ws-db
+      - DB_TEST_USER=peter
+      - DB_TEST_PASS=pwd
+      - DB_TEST_NAME=test
     volumes:
       - ./backend/:/backend
-  website-db:
-    image: postgres
-    restart: always
-  
+
