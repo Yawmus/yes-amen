@@ -29,6 +29,8 @@ let init = (_canvas, gameState) => {
         case 'd':
           head.y += gs.blockSize
           break;
+        default:
+          break;
       }
 
       // Collision

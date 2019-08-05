@@ -1,5 +1,4 @@
 import React from 'react';
-import App from './App';
 import Home from './home';
 import Login from './login'
 import Game from './game/gameContainer'

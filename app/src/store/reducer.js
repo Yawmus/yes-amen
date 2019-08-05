@@ -1,5 +1,3 @@
-import produce from 'immer';
-
 const initialState = {
         highscore: {
                 isFetching: false,
@@ -65,7 +63,6 @@ const reducer = (state = initialState, action) => {
                                         message: action.error
                                 }
                         })
-                        return state;
                 default:
                         return state
         }

@@ -13,7 +13,7 @@ function App() {
       
       <footer className="footer">
         <a href="https://github.com/Yawmus">
-          <img src={require('./images/GitHub-Mark-64px.png')} width="32px" height="32px"/>
+          <img src={require('./images/GitHub-Mark-64px.png')} alt="Link to github" width="32px" height="32px"/>
         </a>
         <p>Site written by me using Node/React</p>
       </footer>

@@ -1,7 +1,7 @@
 import React from 'react'
-import './style.css';
+import './../style.css';
 
-import { init, update } from './snake';
+import { init, update } from './logic';
 import Button from 'react-bootstrap/Button';
 const input = require('./input');
 

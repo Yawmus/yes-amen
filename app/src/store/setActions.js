@@ -1,5 +1,5 @@
 import { setHighscore, sendEmail } from "./../services/http";
-import getActions from './getActions';
+//import getActions from './getActions';
 
 const actions = {
     setHighscoreData: data => { // Set local highscore value

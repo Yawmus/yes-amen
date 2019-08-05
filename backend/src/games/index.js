@@ -26,7 +26,7 @@ async function getScore(req, h)
 
   if(!res.rows.length)
   {
-    return h.response(0).code(200)
+    return h.response({score: 0}).code(200)
     //return h.response().code(404);
   }
 

@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { ReactReduxContext } from 'react-redux'
 import { connect } from 'react-redux'
 import Button from 'react-bootstrap/Button';
 

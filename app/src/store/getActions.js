@@ -1,7 +1,5 @@
 import { getHighscore } from "./../services/http";
-import setActions from "./setActions";
-
-
+//import setActions from "./setActions";
 
 const actions = {
     getHighscore: game => {
@@ -17,27 +15,6 @@ const actions = {
                 })
             )
         }
-        //let res = await getHighscore(game);
-        //console.log(res);
-        //return dispatch => {
-            //{
-                //type: "SET_HIGHSCORE",
-                    //res
-            //}
-        //}
-
-
-
-        //return async dispatch => {
-                //.then(
-                    //data => {
-                        //dispatch(setActions.setHighscoreData(data));
-                    //},
-                    //err => {
-                        //console.log('there was a problem', err);
-                    //}
-                //);
-        //};
     },
 };
 
