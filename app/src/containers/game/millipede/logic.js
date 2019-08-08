@@ -1,4 +1,5 @@
 const uuidv1 = require('uuid/v1');
+const props = require('./props');
 let gs;
 let ctx;
 let canvas;
@@ -8,126 +9,85 @@ let init = (_canvas, gameState) => {
   ctx = canvas.getContext('2d')
   gs = gameState;
 
-  addProp({
-    name: 'player',
-    grow: false,
-    segments: [{ x: 20, y: 20, fill: "blue" }],
-    update: function(gs) {
-      let head = { ...this.segments[0] };
+  let player = props['player'];
+  let x = Math.floor(canvas.width / 2) + 10
+  let y = canvas.height - 50
+  spawnProp(player, x, y);
 
-      switch(gs.dir)
-      {
-        case 'l':
-          head.x -= gs.blockSize
-          break;
-        case 'u':
-          head.y -= gs.blockSize
-          break;
-        case 'r':
-          head.x += gs.blockSize
-          break;
-        case 'd':
-          head.y += gs.blockSize
-          break;
-        default:
-          break;
-      }
+  let mushroom = props['mushroom'];
+  let xSteps = canvas.width / mushroom.size;
+  let ySteps = (canvas.height - gs.boundHeight) / mushroom.size;
 
-      // Collision
-      let hitSeg = this.segments.filter((seg) => seg.x === head.x && seg.y === head.y);
-      if(hitSeg.length)
+  for(let j=0; j<ySteps; j++)
+  {
+    for(let i=0; i<xSteps; i++)
+    {
+      if(Math.random() > .9 - j*.01)
       {
-        this.segments.forEach((seg) => {
-          if(seg.x === head.x && seg.y === head.y)
-          {
-            seg.fill = "red"
-          }
-        })
-        gs.fail = true;
-        return;
+        x = i * mushroom.size;
+        y = j * mushroom.size;
+        spawnProp(mushroom, x, y);
       }
-      if(head.x < 0 || head.x + gs.blockSize > canvas.width || 
-         head.y < 0 || head.y + gs.blockSize > canvas.height)
-      {
-        this.segments[0].fill = "red"
-        gs.fail = true;
-        return;
-      }
-
-      for(let i=0; i<gs.props.length; i++)
-      {
-        let prop = gs.props[i];
-        if(prop.name === 'food' && head.x === prop.x && head.y === prop.y)
-        {
-          gs.props.splice(i, 1);
-          this.grow = true;
-          break;
-        }
-      }
-
-      if(this.grow)
-      {
-        this.grow = false;
-        gs.score.update();
-      }
-      else
-      {
-        this.segments.pop();
-      }
-
-      this.segments.unshift(head);
     }
-  });
+  }
+
+  let millipede = props['millipede'];
+  spawnProp(millipede, 0, 0);
 }
 
 let update = (delta) => {
-  if(!gs.props.filter((prop) => prop.name === 'food').length)
-  {
-    let x = (Math.random() * canvas.width) / gs.blockSize;
-    x = Math.floor(x) * gs.blockSize;
-    let y = (Math.random() * canvas.height) / gs.blockSize;
-    y = Math.floor(y) * gs.blockSize;
-    addProp({
-      name: 'food',
-      x: x,
-      y: y,
-      fill: "green",
-    });
-  }
-
   gs.props.forEach((prop) => {
     if(prop.update !== undefined)
     {
-      prop.update(gs);
+      prop.update(gs, canvas);
     }
-    draw(prop);
+    prop.draw(ctx);
   });
 
   return gs;
 }
 
-function addProp(prop)
+function spawnProp(prop, x, y)
 {
-  gs.props.push({id: uuidv1(), ...prop})
+  const newProp = Object.assign(
+    {
+      id: uuidv1(),
+      x: x,
+      y: y
+    },
+    prop
+  )
+
+  gs.props.push(newProp);
 }
 
-function draw({x, y, fill, segments})
+function draw({name, x, y, fill, size, segments, draw})
 {
+  if(draw !== undefined)
+  {
+    draw(ctx);
+  }
   if(segments !== undefined)
   {
     segments.forEach((seg) => {
       ctx.fillStyle = seg.fill;
-      ctx.fillRect(seg.x + 1, seg.y + 1, gs.blockSize - 2, gs.blockSize - 2);
+      ctx.fillRect(seg.x + 1, seg.y + 1, size - 2, size - 2);
     })
   }
   else
   {
     ctx.fillStyle = fill;
-    ctx.fillRect(x + 1, y + 1, gs.blockSize - 2, gs.blockSize - 2);
+    ctx.beginPath();
+    ctx.moveTo(x + size / 2, y);
+    ctx.lineTo(x, y + size);
+    ctx.lineTo(x + size / 2 , y + size / 2);
+    ctx.lineTo(x + size, y + size);
+    ctx.fill();
   }
 }
 
 export {
-    init, 
-    update,
+  init, 
+  update,
+  spawnProp
 };

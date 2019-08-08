@@ -10,7 +10,6 @@ class Millipede extends React.Component {
     super(props);
     this.focus = React.createRef();
     this.start = this.start.bind(this);
-    this.setFPS = this.setFPS.bind(this);
   }
 
   componentDidMount() {
@@ -25,19 +24,17 @@ class Millipede extends React.Component {
     this.gameState = {
       props: [],
       blockSize: 20,
-      fps: 4,
+      fps: 60,
       fail: false,
-      dir: 'r',
+      boundHeight: 100,
       score: {
         update: function(){
           this.gameState.score.value++;
-          this.gameState.fps++;
-          clearInterval(this.game);
-          this.setFPS();
         },
         value: 0
       },
-      then: Date.now()
+      then: Date.now(),
+      deleteQueue: []
     } 
 
     this.gameState.score.update = this.gameState.score.update.bind(this);
@@ -45,12 +42,7 @@ class Millipede extends React.Component {
 
     init(this.canvas, this.gameState);
     this.refs.canvas.focus();
-    clearInterval(this.game);
-    this.setFPS();
-  }
 
-  setFPS()
-  {
     this.game = setInterval(
       () => this.tick(), 
       1000/this.gameState.fps
@@ -91,7 +83,6 @@ class Millipede extends React.Component {
       return;
     }
 
-
     var interval = 1000/this.gameState.fps;
     let delta = this.state.tick - this.gameState.then;
     // Game loop
@@ -104,9 +95,15 @@ class Millipede extends React.Component {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     ctx.restore();
+    ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
+    ctx.fillRect(0, this.canvas.height - this.gameState.boundHeight, this.canvas.width, this.gameState.boundHeight)
 
     delta /= 100;
     this.gameState = update(ctx, delta, this.gameState);
+
+    this.gameState.props = this.gameState.props.filter(
+      (prop) => !this.gameState.deleteQueue.includes(prop.id)
+    )
   }
 
   render() {
@@ -116,7 +113,7 @@ class Millipede extends React.Component {
 
     return (
       <div className='container'>
-        <canvas tabIndex='1' ref='canvas' className='canvas' width={480} height={300}/>
+        <canvas tabIndex='1' ref='canvas' className='canvas' width={480} height={400}/>
         <h4 className='score'>Score {score}</h4>
         { this.props.highscore.isFetching ? 
         <h4 className='highscore'>...</h4> :

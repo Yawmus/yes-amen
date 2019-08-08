@@ -1,6 +1,7 @@
 .canvas{
   border: 2px solid black;
   margin: 30px 0;
+  cursor: none;
 }
 .container{
   width: 500px;
