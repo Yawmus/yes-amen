@@ -15,14 +15,12 @@ class Home extends React.Component {
     };
 
     return (
-      <div className="home">
-      <YouTube
-        videoId="CEo4JYssQRI"
-        opts={opts}
-        onReady={this._onReady}
-      />
+      <div className="resume">
+        <iframe src="https://docs.google.com/document/d/189JPT2MbAhRR7aEKCUEmcoBbz-6JPUK5pi8hXogkUlU/preview" frameborder='0' width='100%' height='600'></iframe>
+
       </div>
     )
   }
 }
 export default Home
+

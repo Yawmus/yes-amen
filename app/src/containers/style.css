@@ -62,15 +62,29 @@ ul, li{
   margin: 0px 10px;
 }
 
-.navigation ul {
+.gameNav ul li{
+  background-color: black;
+  width: 40%;
+  padding: 5px 0;
+}
+
+.navigation ul, .gameNav ul{
   padding: 0;
 }
 
-.contact, .home {
+.gameNav ul a {
+  color:white;
+}
+
+.gameNav li:active {
+  background-color:orange;
+}
+
+.contact, .home, .blog {
   text-align: left;
 }
 
-.contact img, .home img { 
+.contact img, .home img, .blog img { 
   border: 2px solid #202020;
   margin: 0 0 20px 10px;
 }
@@ -83,6 +97,12 @@ ul, li{
 .contact Form Button 
 {
   width: 100px;
+}
+
+.resume {
+  background:url(images/loader.gif) center fixed no-repeat;
+}
+.resume iframe{
 }
 
 .footer {

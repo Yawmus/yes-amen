@@ -1,10 +1,12 @@
 import React from 'react';
 import Home from './home';
 import Login from './login'
-import Game from './game/gameContainer'
-import Counter from './counter'
+import Games from './games'
+//import Counter from './counter'
 import Contact from './contact'
-import GoHome from './goHome'
+import Resume from './resume'
+import Blog from './blog'
+import RedirectTo from './return'
 import NotFound from './notFound'
 import './style.css';
 import { Route, NavLink, BrowserRouter as Router, Switch } from 'react-router-dom'
@@ -20,13 +22,18 @@ function Navigation(){
             </NavLink>
           </li>
           <li>
-            <NavLink activeClassName="active" to="/game">
-              Game
+            <NavLink activeClassName="active" to="/games">
+              Games
             </NavLink>
           </li>
           <li>
-            <NavLink activeClassName="active" to="/counter">
-              Counter
+            <NavLink activeClassName="active" to="/blog">
+              Blog
+            </NavLink>
+          </li>
+          <li>
+            <NavLink activeClassName="active" to="/resume">
+              Resume
             </NavLink>
           </li>
           <li>
@@ -37,11 +44,12 @@ function Navigation(){
         </ul>
         <hr/>
         <Switch>
-          <Route exact path="/" component={GoHome}/>
+          <Route exact path="/" component={() => RedirectTo('/home')}/>
           <Route path="/home" component={Home} />
           <Route path="/login" component={Login} />
-          <Route path="/game" component={Game} />
-          <Route path="/counter" component={Counter} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/resume" component={Resume} />
+          <Route path="/games" component={Games} />
           <Route path="/contact" component={Contact} />
           <Route component={NotFound}/>
         </Switch>

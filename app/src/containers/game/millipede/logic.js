@@ -31,8 +31,8 @@ let init = (_canvas, gameState) => {
     }
   }
 
-  let millipede = props['millipede'];
-  spawnProp(millipede, 0, 0);
+  let millipede = new props['Millipede'](0, 0);
+  spawnProp(millipede, 0, 0, true);
 }
 
 let update = (delta) => {
@@ -47,14 +47,42 @@ let update = (delta) => {
   return gs;
 }
 
-function spawnProp(prop, x, y)
+function spawnProp(prop, x, y, test = false)
 {
-  const newProp = Object.assign(
-    {
+  if(test)
+  {
+    gs.props.push(prop);
+    return
+  }
+
+  let baseProp = {
       id: uuidv1(),
       x: x,
       y: y
-    },
+  }
+
+  if(prop.canHit !== undefined)
+  {
+    baseProp.getCollisions = function(gs)
+    {
+      return gs.props.filter((prop) => {
+        if(this.canHit.includes(prop.name) && prop.id != this.id
+        && this.x + this.size > prop.x
+        && this.x < prop.x + prop.size
+        && this.y < prop.y + prop.size
+        && this.y + this.size > prop.y) {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      })
+    }
+  }
+
+  const newProp = Object.assign(
+    baseProp,
     prop
   )
 
