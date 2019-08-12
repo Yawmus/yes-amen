@@ -66,7 +66,7 @@ function spawnProp(prop, x, y, test = false)
     baseProp.getCollisions = function(gs)
     {
       return gs.props.filter((prop) => {
-        if(this.canHit.includes(prop.name) && prop.id != this.id
+        if(this.canHit.includes(prop.name) && prop.id !== this.id
         && this.x + this.size > prop.x
         && this.x < prop.x + prop.size
         && this.y < prop.y + prop.size
@@ -87,31 +87,6 @@ function spawnProp(prop, x, y, test = false)
   )
 
   gs.props.push(newProp);
-}
-
-function draw({name, x, y, fill, size, segments, draw})
-{
-  if(draw !== undefined)
-  {
-    draw(ctx);
-  }
-  if(segments !== undefined)
-  {
-    segments.forEach((seg) => {
-      ctx.fillStyle = seg.fill;
-      ctx.fillRect(seg.x + 1, seg.y + 1, size - 2, size - 2);
-    })
-  }
-  else
-  {
-    ctx.fillStyle = fill;
-    ctx.beginPath();
-    ctx.moveTo(x + size / 2, y);
-    ctx.lineTo(x, y + size);
-    ctx.lineTo(x + size / 2 , y + size / 2);
-    ctx.lineTo(x + size, y + size);
-    ctx.fill();
-  }
 }
 
 export {

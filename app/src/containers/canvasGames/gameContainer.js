@@ -4,7 +4,7 @@ import Millipede from './millipede/millipedeContainer'
 import { connect } from 'react-redux';
 import getActions from './../../store/getActions';
 import setActions from './../../store/setActions';
-import games from './games'
+import games from './canvasGames'
 
 
 const mapStateToProps = (state) => {

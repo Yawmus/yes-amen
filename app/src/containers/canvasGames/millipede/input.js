@@ -8,8 +8,8 @@ exports.setup = (_this) => {
   fire = fire.bind(_this);
 }
 
-function fire(){
-  let player = this.gameState.props.filter(prop => prop.name == "player")[0]
+var fire = function(){
+  let player = this.gameState.props.filter(prop => prop.name === "player")[0]
   if(player === undefined)
   {
     return;
@@ -30,7 +30,7 @@ function mouseDown(e)
 function mouseMove(e)
 {
   var rect = this.canvas.getBoundingClientRect();
-  let player = this.gameState.props.filter(prop => prop.name == "player")[0]
+  let player = this.gameState.props.filter(prop => prop.name === "player")[0]
   if(player === undefined)
   {
     return;
@@ -52,7 +52,7 @@ function mouseMove(e)
 }
 
 function keyDown(e) {
-  let player = this.gameState.props.filter(prop => prop.name == "player")[0]
+  let player = this.gameState.props.filter(prop => prop.name === "player")[0]
 
   if(player === undefined)
   {

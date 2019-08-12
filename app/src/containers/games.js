@@ -1,13 +1,8 @@
 import React from 'react'
-//import Snake from './snake/snakeContainer'
-import Millipede from './game/millipede/millipedeContainer'
-import Game from './game/gameContainer'
+import Game from './canvasGames/gameContainer'
 import NotFound from './notFound'
 import { Route, NavLink, BrowserRouter as Router, Switch } from 'react-router-dom'
-import games from './game/games';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row'; 
+import games from './canvasGames/canvasGames';
 import Return from './return'
 
 class Games extends React.Component {

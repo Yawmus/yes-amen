@@ -5,7 +5,7 @@
 
 body {
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2em 0;
   font-family: 'MyFont';
   max-width: 700px;
 }
@@ -44,17 +44,22 @@ ul, li{
 .App-link {
   color: #61dafb;
 }
-.title h1, .title h2{
+.title h4, .title h5{
+  /*color:#737373;*/
+  font: normal normal normal 19px/1.4em avenir-lt-w01_35-light1475496,sans-serif;
+  text-align:left;
+  margin-bottom:0;
+}
+.title div {
+  float: left; 
+  padding: 7px 0 0 10px;
+}
+.title img{
+  float: left; 
+}
+.title{
   display: inline-block;
-}
-
-.title h1
-{
-  color:#737373;
-}
-
-.title h2
-{
+  margin:20px 0 30px 0;
 }
 
 .navigation ul li{ 
@@ -89,6 +94,36 @@ ul, li{
   margin: 0 0 20px 10px;
 }
 
+.home iframe{ 
+  margin-top: 66px;
+}
+
+.highlighted{
+  padding-top:100px;
+}
+
+.flawsInner {
+  background:url(images/border.png) no-repeat;
+  background-size: 100% 90%;
+  width:100%;
+  height:500px;
+}
+.flawsOuter {
+  background:url(images/background.jpg) no-repeat;
+  background-size: 120%;
+  width:120%;
+  height:450px;
+  margin-left:-70px
+}
+.flawsInner iframe{
+  float: left;
+}
+.flawsInner div {
+  width: 100%;
+}
+.flawsInner h3, .flawsInner h6, .flawsInner p{
+  color:white;
+}
 .contact Form{
   margin: 0 auto;
   width: 500px;
@@ -103,6 +138,22 @@ ul, li{
   background:url(images/loader.gif) center fixed no-repeat;
 }
 .resume iframe{
+}
+
+.highlighted h3, .highlighted p, .highlighted div{
+  text-align:center;
+}
+.portfolioItem h6, .highlighted h6{
+  text-align:center;
+}
+.highlighted h6 i{
+  padding-left:40px;
+}
+.portfolioItem h6 i{
+  padding-left:80px;
+}
+.portfolioItem{
+  text-align:right;
 }
 
 .footer {

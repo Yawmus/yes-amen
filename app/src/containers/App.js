@@ -6,7 +6,11 @@ function App() {
   return (
     <div className="App">
       <div className="title"> 
-        <h2>Peter Jacobsen</h2>
+        <img src={require('./images/logo.png')} alt="Cool logo" width="54px" height="65px" float="left"/>
+        <div>
+          <h4><strong>Peter Jacobsen</strong></h4>
+          <h5>Game Programmer & Software Developer</h5>
+        </div>
       </div>
       <br/>
       <Navigation/>

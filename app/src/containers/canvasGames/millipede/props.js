@@ -60,7 +60,7 @@ Creature.prototype.speed = 1;
 Creature.prototype.size = 20;
 Creature.prototype.getCollisions = function(gs){
   return gs.props.filter((prop) => {
-    if(this.canHit.includes(prop.name) && prop.id != this.id
+    if(this.canHit.includes(prop.name) && prop.id !== this.id
       && this.x + this.size > prop.x
       && this.x < prop.x + prop.size
       && this.y < prop.y + prop.size
@@ -124,6 +124,8 @@ Millipede.prototype.update = function(gs, canvas) {
     case 'd':
       modY = 1;
       break;
+    default:
+      break;
   }
 
   this.x += modX * this.speed;
@@ -140,14 +142,14 @@ Millipede.prototype.update = function(gs, canvas) {
 
   let collided = this.getCollisions(gs);
   collided.forEach((prop) => {
-    if(prop.name == 'mushroom'){
+    if(prop.name === 'mushroom'){
       if(dir === this.xGlobalDir)
       {
         this.moveAxis = this.moveAxis === 'x' ? 'y' : 'x';
         this.xGlobalDir = this.xGlobalDir === 'r' ? 'l' : 'r';
       }
     }
-    else if(prop.name == 'player')
+    else if(prop.name === 'player')
     {
       prop.hit(gs);
     }
