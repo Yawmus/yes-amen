@@ -18,7 +18,7 @@ services:
       context: db
       dockerfile: Dockerfile
     ports:
-      - "5432:5432"
+      - "5555:5555"
   back:
     container_name: ws-back
     build:

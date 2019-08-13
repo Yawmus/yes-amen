@@ -8,7 +8,8 @@ class Blog extends React.Component {
   render() {
     return (
       <div className="blog">
-        {blogs().map(( {name, date, id, body, image } ) => {
+        {blogs().map(( {name, date, id, body, image, imageLocation,  } ) => {
+          let imageOrientation = parseInt(id) % 2 === 0 ? 'right' : 'left';
           let paragraphs = body.map((para) => {
             return (
               <p>
@@ -28,21 +29,12 @@ class Blog extends React.Component {
                 </i>
               </p>
               <br/>
-              <img src={require(`./images/${image}`)} alt="A beautiful speciment" height="300px" align="right"/>
+              <img src={require(`./images/${image}`)} alt="A beautiful speciment" height="220px" align={imageOrientation}/>
               {paragraphs}
+              <br/>
             </div>
           )
         })}
-
-        <br/>
-        <p>
-        </p>
-        <p>
-        </p>
-        <p>
-        </p>
-        <br/>
-        <br/>
     </div>
     )
   }

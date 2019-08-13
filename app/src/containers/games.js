@@ -9,17 +9,13 @@ class Games extends React.Component {
   render() {
     let { props } = this; 
     let match = props.match;
-    // Stage is a div container
-    // Layer is actual canvas element (so you may have several canvases in the stage)
-    // And then we have canvas shapes inside the Layer
-    console.log(match);
     return (
       <Router>
         <div className="gameNav">
           <ul>
             {games().map(({ name, id }) => (
-              <NavLink activeClassName="active" to={`${match.url}/${id}`}>
-                <li key={id}>
+              <NavLink activeClassName="active" to={`${match.url}/${id}`} key={id}>
+                <li>
                   { name }
                 </li>
               </NavLink>

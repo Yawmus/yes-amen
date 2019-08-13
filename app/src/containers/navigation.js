@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './home';
 import Login from './login'
 import Games from './games'
+import Game from './game'
 //import Counter from './counter'
 import Contact from './contact'
 import Resume from './resume'
@@ -51,6 +52,7 @@ function Navigation(){
           <Route path="/resume" component={Resume} />
           <Route path="/games" component={Games} />
           <Route path="/contact" component={Contact} />
+          <Route path="/:id" component={Game} />
           <Route component={NotFound}/>
         </Switch>
       </div>

@@ -55,6 +55,16 @@ exports.routes =  [
     path: '/test',
     handler: home.get
   },
+  {
+    method: 'GET',
+    path: '/images/{file*}',
+    handler: {
+      directory: {
+        path: 'src/public/images',
+        listing: true,
+      }
+    }
+  },
   {  
     method: [ 'GET', 'POST' ],
     path: '/{any*}',

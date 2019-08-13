@@ -7,26 +7,27 @@ class Home extends React.Component {
   onSubmit = () => {
     this.props.history.push('/')
   }
+
   render() {
     const opts = {
       height: '305',
-      width: '520',
+      width: '560',
       playerVars: {
-        autoplay: 0
-      }
+        autoplay: 0,
+      },
     };
     let gameList = games();
     let highlight = gameList[0];
     gameList.shift();
-    console.log(gameList);
 
     return (
       <div className="home">
         <div className="flawsOuter">
           <div className="flawsInner">
-            <YouTube float="left"
+            <YouTube float="left" className="loader"
               videoId="CEo4JYssQRI"
               opts={opts}
+              host='https://www.youtube.com'
               onReady={this._onReady}
             />
             <div className="highlighted">
@@ -35,7 +36,7 @@ class Home extends React.Component {
             </h3>
             <h6>
               <i>
-                { highlight.type }
+                { highlight.flavor }
               </i>
             </h6>
             <br/>
@@ -63,10 +64,12 @@ class Home extends React.Component {
         </div>
       <br/>
       <br/>
+      <br/>
         {
-          gameList.map(( { name, type, desc, gameLink, playLink } ) => {
+          gameList.map(( { id, name, mainImage, mainImageOrientation, type, desc, gameLink, playLink } ) => {
             return (
-              <div className="portfolioItem">
+              <div className="portfolioItem" key={id}>
+                <img src={require(`./images/school/${mainImage}`)} alt="A beautiful speciment" height="250px" align={mainImageOrientation}/>
                 <h3 align="center">
                   { name }
                 </h3>
@@ -75,10 +78,11 @@ class Home extends React.Component {
                     { type }
                   </i>
                 </h6>
-                <p>
+                <br/>
+                <p align="center">
                   { desc }
                 </p>
-                <div>
+                <div align="center">
                   {
                     playLink !== undefined ?
                     <a href={playLink}>
@@ -86,7 +90,7 @@ class Home extends React.Component {
                     </a> : null
                   }
                 </div>
-                <div>
+                <div align="center">
                   {
                     gameLink !== undefined ?
                     <Link to={gameLink}>
@@ -94,7 +98,9 @@ class Home extends React.Component {
                     </Link> : null
                   }
                 </div>
-              <br/>
+                <br/>
+                <br/>
+                <br/>
               </div>
             )
           })

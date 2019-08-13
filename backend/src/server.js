@@ -15,7 +15,10 @@ const init = async () => {
       origins: ['http://localhost:4000'] // Front-end
     }
   });
+
+  await server.register(require('inert'));
   
+  server.route(routes);
   await server.start();
   console.log('Server running on %s', server.info.uri);
 };
@@ -25,7 +28,8 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
 });
 
-server.route(routes);
+init();
+ 
 
 const client = new pg.Pool((process.env.BE_ENVIRONMENT === 'live') ? {
   user: process.env["DB_LIVE_USER"],
@@ -46,5 +50,4 @@ server.decorate("request", "database", function (name) {
   return client
 })
 
-init();
 
