@@ -7,7 +7,7 @@ export default () => [
     type: 'First-Person Puzzle-Platformer',
     flavor: 'Released on Steam Greenlight!',
     desc: `A game where you manipulate the direction of gravity in order to solve complex puzzles and escape an ominous labyrinth.`,
-    desc2: `Flaws of Gravity is the game I worked on during my senior year at the University of Utah. The project required an ample amount of physics and linear algebra coding. Some of my contributions towards this project:`,
+    desc2: `Flaws of Gravity is a game I worked on during my senior year at the University of Utah. The project required an ample amount of physics and linear algebra coding. Some of my contributions towards this project:`,
     bullets: [
 `Did all scripting on the game's prototype.`,
 `Implemented the core physics-based gameplay mechanic.`,

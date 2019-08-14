@@ -20,9 +20,9 @@ class Blog extends React.Component {
           return (
             <div>
               <br/>
-              <h5 align="center">
+              <h4 align="center">
                 {name}
-              </h5>
+              </h4>
               <p align="center">
                 <i>
                   {date}
@@ -30,7 +30,9 @@ class Blog extends React.Component {
               </p>
               <br/>
               <img src={require(`./images/${image}`)} alt="A beautiful speciment" height="220px" align={imageOrientation}/>
-              {paragraphs}
+              <p className='blogBody'>
+                {paragraphs}
+              </p>
               <br/>
             </div>
           )
