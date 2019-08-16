@@ -7,9 +7,10 @@ export default () => [
       `Thinking about different directions to deploy this thing.`,
       `I talked with some coworkers today about how they host their own personal websites on the cheap. One response included using an old laptop that's perpetually plugged in to receive requests. Nice.`,
       `The first option is to learn/create a firestore database and integrate it with my front-end react code -- apparently there's a free-tier :). By doing this I can have my react components update without the need to have an API chain in redux. This can has the drawback of not being a relational database (is that a drawback though?) and the benefit of bundling both my user information as well as storing my images by using its Cloud storage. With this in mind, I really wouldn't even need my Hapi backend since its primary usage is image serving and highscore keeping (for the time being). Even if I wanted to scale for more event processing, I could always start using my Hapi server again.`,
-      `Option 2 involves simply throwing my Hapi server in an EC2 instance (micro -- which is free, of course) and creating some RDS DB like postgres for simplicity's sake. This is a more straight-forward approach since my infastructure is already setup to deal with a REST API.`,
-      `Turns out a t2.micro postgres DB costs 138.78 USD per month, so goodbye option 2.`,
-      `I'm going to go the route of firestore, but host my Hapi server on a micro instance in EC2. Ah yes, a completely free solution.`
+      `Option 2 involves simply throwing my Hapi server in an EC2 instance (micro -- which is free for 1 year) and using free-tier DynamoDB. This is a more straight-forward approach since my infastructure is already setup to deal with a REST requests.`,
+      `Option 3 is to use serverless to configure a collection of REST endpoints in the form of Lambdas. The free-tier usage for lambdas is 1 million seconds per month, which is plenty for me to work with considering how small-scale this is. What's convient with serverless is that you can configure different AWS services with the lambdas for easy access, so DynamoDB or S3 would be an option for image serving.`,
+      `All of these options would involve me using my git pages site to host my react app/game projects since getting a domain inherently costs money.`,
+      `A good all-round solution seems to be: use React with firestore (for learning's sake) and when I need to process events with a backend I can use serverless to process whatever.`
     ]
   },
   {
