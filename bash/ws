@@ -6,23 +6,29 @@ if [ "$1" = "up" ]; then
   ws build $2
   echo 'bringing up'
   cd $DOCKER_DIR
-	docker-compose -f docker-compose-dev.yml up -d $2
+  docker-compose -f docker-compose-dev.yml up -d $2
 fi
 
 if [ "$1" = "down" ]; then
   echo 'down'
   cd $DOCKER_DIR
-	docker-compose -f docker-compose-dev.yml down $2
+  docker-compose -f docker-compose-dev.yml down $2
 fi
 
 if [ "$1" = "build" ]; then
   echo 'building'
   cd $DOCKER_DIR
-	docker-compose -f docker-compose-dev.yml build $2
+  docker-compose -f docker-compose-dev.yml build $2
 fi
 
 if [ "$1" = "logs" ]; then
   echo 'logging'
   cd $DOCKER_DIR
-	docker-compose -f docker-compose-dev.yml logs $2 --tail 100 -f
+  docker-compose -f docker-compose-dev.yml logs $2 --tail 100 -f
+fi
+
+if [ "$1" = "deploy" ]; then
+  echo 'deploying'
+  cd $DOCKER_DIR
+  echo 'not implemented!'
 fi
