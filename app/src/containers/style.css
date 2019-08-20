@@ -19,6 +19,16 @@ p, a, li{
   font-size:15px;
 }
 
+.auth{
+  position:absolute;
+  top:0px;
+  right:10px;
+}
+.auth a{
+  font-size:13px;
+  color:orange;
+}
+
 .navigation>ul>li>a{
   font-family: 'MyFont';
   font-size:17px;
@@ -32,6 +42,7 @@ p, a, li{
   text-align: center;
   margin-bottom: 80px;
   min-height: 800px;
+  position:relative;
 }
 
 .App-logo {

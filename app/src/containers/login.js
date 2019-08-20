@@ -1,26 +1,40 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { firebase } from './../firebase'
+import 'firebase/auth';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
-class Login extends React.Component {
-  onSubmit = () => {
-    this.props.history.push('/')
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: 'popup',
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+  ],
+  signInSuccessUrl: '/home',
+  callbacks: {
+    signInSuccessWithAuthResult: () => true
   }
+};
+class Login extends React.Component {
+  componentWillMount() {
+    console.log('here')
+    this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
+      (user) => {
+        console.log('here2')
+        this.props.signIn(user)}
+    );
+  }
+
+  componentWillUnmount() {
+    this.unregisterAuthObserver();
+  }
+
   render() {
+    console.log('here3333')
     return (
-      <Form>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-        </Form.Group>
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+      <div>
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+      </div>
     )
   }
 }

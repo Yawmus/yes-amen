@@ -11,7 +11,8 @@ export default () => [
       `Option 3 is to use serverless to configure a collection of REST endpoints in the form of Lambdas. The free-tier usage for lambdas is 1 million seconds per month, which is plenty for me to work with considering how small-scale this is. What's convient with serverless is that you can configure different AWS services with the lambdas for easy access, so DynamoDB or S3 would be an option for image serving.`,
       `All of these options would involve me using my git pages site to host my react app/game projects since getting a domain inherently costs money.`,
       `A good all-round solution seems to be: use React with firestore (for learning's sake) and when I need to process events with a backend I can use serverless to process whatever.`
-    ]
+    ],
+    image: 'docker.png',
   },
   {
     id: '4',

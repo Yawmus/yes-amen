@@ -1,8 +1,20 @@
 import React from 'react';
 import './style.css';
 import Navigation from './navigation'
+import { db } from './../firebase'
+
 
 function App() {
+  //db.collection("highscores").doc("LA").set({
+    //name: "Los Angeles",
+  //})
+    //.then(function() {
+      //console.log("Document successfully written!");
+    //})
+    //.catch(function(error) {
+      //console.error("Error writing document: ", error);
+  //});
+
   return (
     <div className="App">
       <div className="title"> 
@@ -13,8 +25,9 @@ function App() {
         </div>
       </div>
       <br/>
+
       <Navigation/>
-      
+
       <footer className="footer">
         <a href="https://github.com/Yawmus">
           <img src={require('./images/GitHub-Mark-64px.png')} alt="Link to github" width="32px" height="32px"/>
