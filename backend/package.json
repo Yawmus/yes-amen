@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Yawmus/website#readme",
   "dependencies": {
-    "@hapi/hapi": "^18.3.1",
+    "@hapi/hapi": "^19.1.1",
     "boom": "^7.3.0",
     "hapi-cors": "^1.0.3",
     "inert": "^5.1.3",
